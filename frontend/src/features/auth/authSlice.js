@@ -19,7 +19,7 @@ const initialState = {
 };
 
 export const createUserAsync = createAsyncThunk(
-  '/user/createUser',
+  'user/createUser',
   async (userData) => {
     const response = await createUser(userData);
     // The value we return becomes the `fulfilled` action payload
@@ -28,7 +28,7 @@ export const createUserAsync = createAsyncThunk(
 );
 
 export const loginUserAsync = createAsyncThunk(
-  '/user/loginUser',
+  'user/loginUser',
   async (loginInfo, { rejectWithValue }) => {
     try {
       const response = await loginUser(loginInfo);
@@ -40,7 +40,7 @@ export const loginUserAsync = createAsyncThunk(
   }
 );
 
-export const checkAuthAsync = createAsyncThunk('/user/checkAuth', async () => {
+export const checkAuthAsync = createAsyncThunk('user/checkAuth', async () => {
   try {
     const response = await checkAuth();
     return response.data;
@@ -49,7 +49,7 @@ export const checkAuthAsync = createAsyncThunk('/user/checkAuth', async () => {
   }
 });
 export const resetPasswordRequestAsync = createAsyncThunk(
-  '/user/resetPasswordRequest',
+  'user/resetPasswordRequest',
   async (email,{rejectWithValue}) => {
     try {
       const response = await resetPasswordRequest(email);
@@ -63,7 +63,7 @@ export const resetPasswordRequestAsync = createAsyncThunk(
 );
 
 export const resetPasswordAsync = createAsyncThunk(
-  '/user/resetPassword',
+  'user/resetPassword',
   async (data,{rejectWithValue}) => {
     try {
       const response = await resetPassword(data);
@@ -78,7 +78,7 @@ export const resetPasswordAsync = createAsyncThunk(
 );
 
 export const signOutAsync = createAsyncThunk(
-  '/user/signOut',
+  'user/signOut',
   async () => {
     const response = await signOut();
     // The value we return becomes the `fulfilled` action payload

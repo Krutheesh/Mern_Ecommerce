@@ -76,7 +76,6 @@ export function fetchCategories() {
 
 export function fetchBrands() {
   return new Promise(async (resolve) => {
-  
     const response = await fetch('/brands');
     const data = await response.json();
     resolve({ data });
