@@ -74,10 +74,12 @@ opts.jwtFromRequest = cookieExtractor;
 opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
 //middlewares
-
-server.use(express.static(path.join(__dirname, '/frontend/build')));
+console.log("-----"+path.resolve())
+// console.log("-----"+__dirname)
+// // let __dirname = path.resolve()
+server.use(express.static(path.join(path.resolve(), '/frontend/build')));
 server.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
+  res.sendFile(path.join(path.resolve(), 'frontend', 'build', 'index.html'));
 })
 server.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -88,7 +90,7 @@ server.use((err, req, res, next) => {
     message,
   });
 });
- server.use(express.static(path.resolve(__dirname, "frontend/build")));
+//  server.use(express.static(path.resolve(__dirname, "frontend/build")));
 server.use(cookieParser());
 server.use(
   session({
