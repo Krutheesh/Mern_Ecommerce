@@ -12,7 +12,7 @@ const initialState = {
 };
 
 export const fetchLoggedInUserOrderAsync = createAsyncThunk(
-  'user/fetchLoggedInUserOrders',
+  '/user/fetchLoggedInUserOrders',
   async () => {
     const response = await fetchLoggedInUserOrders();
     // The value we return becomes the `fulfilled` action payload
@@ -21,7 +21,7 @@ export const fetchLoggedInUserOrderAsync = createAsyncThunk(
 );
 
 export const fetchLoggedInUserAsync = createAsyncThunk(
-  'user/fetchLoggedInUser',
+  '/user/fetchLoggedInUser',
   async () => {
     const response = await fetchLoggedInUser();
     // The value we return becomes the `fulfilled` action payload
@@ -30,7 +30,7 @@ export const fetchLoggedInUserAsync = createAsyncThunk(
 );
 
 export const updateUserAsync = createAsyncThunk(
-  'user/updateUser',
+  '/user/updateUser',
   async (update) => {
     // this is name mistake
     const response = await updateUser(update);
