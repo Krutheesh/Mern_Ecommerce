@@ -19,7 +19,7 @@ const initialState = {
 };
 
 export const createUserAsync = createAsyncThunk(
-  '/user/createUser',
+  'user/createUser',
   async (userData) => {
     const response = await createUser(userData);
     // The value we return becomes the `fulfilled` action payload
@@ -28,7 +28,7 @@ export const createUserAsync = createAsyncThunk(
 );
 
 export const loginUserAsync = createAsyncThunk(
-  '/user/loginUser',
+  'user/loginUser',
   async (loginInfo, { rejectWithValue }) => {
     try {
       const response = await loginUser(loginInfo);
