@@ -74,20 +74,20 @@ opts.jwtFromRequest = cookieExtractor;
 opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
 //middlewares
-// const __dirname = path.resolve();
-// server.use(express.static(path.join(__dirname, '/frontend/build')));
-// server.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
-// })
-// server.use((err, req, res, next) => {
-//   const statusCode = err.statusCode || 500;
-//   const message = err.message || 'Internal Server Error';
-//   return res.status(statusCode).json({
-//     success: false,
-//     statusCode,
-//     message,
-//   });
-// });
+
+server.use(express.static(path.join(__dirname, '/frontend/build')));
+server.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
+})
+server.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internal Server Error';
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
  server.use(express.static(path.resolve(__dirname, "frontend/build")));
 server.use(cookieParser());
 server.use(
