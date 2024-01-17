@@ -34,6 +34,7 @@ export function loginUser(loginInfo) {
 }
 
 export function checkAuth() {
+  console.log("auth check")
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch('/auth/check');
