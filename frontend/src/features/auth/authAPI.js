@@ -14,7 +14,7 @@ export function createUser(userData) {
 export function loginUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch('/auth/login', {
+      const response = await fetch('http://localhost:5000/auth/login', {
         method: 'POST',
         body: JSON.stringify(loginInfo),
         headers: { 'content-type': 'application/json' },
@@ -38,6 +38,8 @@ export function checkAuth() {
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch('/auth/check');
+     const data = response.json()
+      console.log(data)
       if (response.ok) {
         const data = await response.json();
         resolve({ data });
