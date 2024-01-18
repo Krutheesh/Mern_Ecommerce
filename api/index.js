@@ -24,8 +24,7 @@ const { isAuth, sanitizeUser, cookieExtractor } = require("./services/common");
 const path = require("path");
 const { Order } = require("./model/Order");
 const { env } = require("process");
-const { createBrand } = require("./controller/Brand");
-const { createCategory } = require("./controller/Category");
+
 // Webhook
 
 const endpointSecret = process.env.ENDPOINT_SECRET;
@@ -74,23 +73,8 @@ opts.jwtFromRequest = cookieExtractor;
 opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
 //middlewares
-console.log("-----" + path.resolve());
-// console.log("-----"+__dirname)
-// // // let __dirname = path.resolve()
-// server.use(express.static(path.join(path.resolve(), '/frontend/build')));
-// server.get('*', (req, res) => {
-//   res.sendFile(path.join(path.resolve(), 'frontend', 'build', 'index.html'));
-// })
-server.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
-  const message = err.message || "Internal Server Error";
-  return res.status(statusCode).json({
-    success: false,
-    statusCode,
-    message,
-  });
-});
-server.use(express.static(path.resolve(__dirname, "frontend/build")));
+
+server.use(express.static(path.resolve(__dirname, "build")));
 server.use(cookieParser());
 server.use(
   session({
@@ -115,7 +99,7 @@ server.use("/users", isAuth(), usersRouter.router);
 server.use("/auth", authRouter.router);
 server.use("/cart", isAuth(), cartRouter.router);
 server.use("/orders", isAuth(), ordersRouter.router);
-// createProduct()
+
 // this line we add to make react router work in case of other routes doesnt match
 server.get("*", (req, res) =>
   res.sendFile(path.resolve("build", "index.html"))
@@ -226,6 +210,3 @@ async function main() {
 server.listen(process.env.PORT, () => {
   console.log("server started", process.env.PORT);
 });
-
-// createBrand()
-// createCategory()
